@@ -1,21 +1,42 @@
-import React, { Component } from 'react';
+import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
+import { useTranslation } from 'react-i18next'
+
+function App() {
+
+  const { t, i18n } = useTranslation();
+
+  function handleClick(lang) {
+    i18n.changeLanguage(lang)
+  }
+
+  return (
+    <div className="App">
+
+      <nav style={{ width: '100%', padding: '2rem 0', backgroundColor: 'gray' }}>
+        <button onClick={() => handleClick('en')}>
+          English
+        </button>
+        <button onClick={() => handleClick('fr')}>
+          French
+        </button>
+        <button onClick={() => handleClick('chi')}>
+          Chinese
+        </button>
+      </nav>
+      <header>
         <div className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <h2>Welcome to React</h2>
         </div>
         <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
+          {t('To get started, edit src/App.js and save to reload.')}
         </p>
-      </div>
-    );
-  }
+      </header>
+    </div>
+  );
 }
 
 export default App;
